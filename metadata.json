@@ -1,0 +1,8 @@
+{
+  "name": "StaySync - Homestay Channel & Booking Manager",
+  "description": "All-in-one mobile homestay channel manager. Track Airbnb, MakeMyTrip, Booking.com, and direct offline bookings with room inventory control, iCalendar 2-way sync, and secure host authentication.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

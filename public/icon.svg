@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="50%" stop-color="#0d9488"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="roofGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background rounded squircle for Android -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+
+  <!-- Inner glowing ambient ring -->
+  <rect x="24" y="24" width="464" height="464" rx="96" fill="none" stroke="#34d399" stroke-width="4" stroke-opacity="0.3"/>
+
+  <!-- House & Sync Calendar Silhouette -->
+  <g filter="url(#shadow)" transform="translate(40, 24)">
+    <!-- Roof -->
+    <path d="M216 64 L48 200 L84 200 L84 360 C84 372 94 382 106 382 L326 382 C338 382 348 372 348 360 L348 200 L384 200 Z" fill="url(#roofGrad)"/>
+    
+    <!-- Chimney -->
+    <path d="M276 100 L316 100 L316 160 L276 128 Z" fill="#cbd5e1"/>
+
+    <!-- Veranda Door / Sync Symbol -->
+    <rect x="174" y="240" width="84" height="142" rx="12" fill="#047857"/>
+
+    <!-- Calendar Sync Grid lines on the Cottage -->
+    <!-- Window 1 -->
+    <rect x="114" y="230" width="44" height="44" rx="8" fill="#10b981" fill-opacity="0.25" stroke="#059669" stroke-width="3"/>
+    <path d="M136 230 L136 274 M114 252 L158 252" stroke="#059669" stroke-width="3"/>
+
+    <!-- Window 2 -->
+    <rect x="274" y="230" width="44" height="44" rx="8" fill="#10b981" fill-opacity="0.25" stroke="#059669" stroke-width="3"/>
+    <path d="M296 230 L296 274 M274 252 L318 252" stroke="#059669" stroke-width="3"/>
+
+    <!-- Sync Arrows overlay badge -->
+    <g transform="translate(280, 290)">
+      <circle cx="50" cy="50" r="44" fill="#0f172a" stroke="#34d399" stroke-width="6"/>
+      <!-- Arrows -->
+      <path d="M36 40 A18 18 0 0 1 66 34 L66 26 L76 38 L64 48 L64 40 A12 12 0 0 0 40 44 Z" fill="#34d399"/>
+      <path d="M64 60 A18 18 0 0 1 34 66 L34 74 L24 62 L36 52 L36 60 A12 12 0 0 0 60 56 Z" fill="#38bdf8"/>
+    </g>
+  </g>
+</svg>

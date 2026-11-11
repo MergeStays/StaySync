@@ -1,0 +1,127 @@
+{
+  "users": [
+    {
+      "id": "user_demo_host",
+      "email": "demo@homestay.com",
+      "passwordHash": "password123",
+      "name": "Prachurjya B. (Host)",
+      "homestayName": "Highland Pinecrest Homestay",
+      "currency": "₹",
+      "createdAt": "2026-11-11T14:37:26.310Z"
+    }
+  ],
+  "data": {
+    "user_demo_host": {
+      "rooms": [
+        {
+          "id": "room_user_demo_host_1",
+          "userId": "user_demo_host",
+          "name": "Pine Crest Wooden Cottage",
+          "type": "Deluxe Cottage",
+          "capacity": 3,
+          "basePrice": 3800,
+          "description": "Handcrafted timber cottage overlooking the pine forest with private balcony.",
+          "amenities": [
+            "Mountain View",
+            "King Bed",
+            "Heater",
+            "Wi-Fi",
+            "Breakfast Included"
+          ],
+          "color": "#059669",
+          "isActive": true,
+          "createdAt": "2026-11-11T14:37:26.310Z"
+        },
+        {
+          "id": "room_user_demo_host_2",
+          "userId": "user_demo_host",
+          "name": "Valley View Deluxe Suite",
+          "type": "Master Suite",
+          "capacity": 4,
+          "basePrice": 4900,
+          "description": "Spacious suite with floor-to-ceiling glass windows and panoramic sunrise views.",
+          "amenities": [
+            "Valley View",
+            "2 Queen Beds",
+            "Fireplace",
+            "En-suite Bath",
+            "Smart TV"
+          ],
+          "color": "#0284C7",
+          "isActive": true,
+          "createdAt": "2026-11-11T14:37:26.310Z"
+        },
+        {
+          "id": "room_user_demo_host_3",
+          "userId": "user_demo_host",
+          "name": "Tea Garden Studio",
+          "type": "Studio Room",
+          "capacity": 2,
+          "basePrice": 2800,
+          "description": "Cozy retreat right next to the heritage organic tea terrace garden.",
+          "amenities": [
+            "Garden Access",
+            "Queen Bed",
+            "Work Desk",
+            "Hot Water",
+            "Tea Maker"
+          ],
+          "color": "#D97706",
+          "isActive": true,
+          "createdAt": "2026-11-11T14:37:26.310Z"
+        }
+      ],
+      "bookings": [
+        {
+          "id": "bk_1794416505163_9urh2i",
+          "userId": "user_demo_host",
+          "roomId": "room_user_demo_host_1",
+          "guestName": "AIRBNB Guest (7f662ec65913)",
+          "source": "airbnb",
+          "externalBookingId": "7f662ec65913-4e9c38edd9fe3c0bdf16b4dad77c1241@airbnb.com",
+          "checkIn": "2026-11-11",
+          "checkOut": "2026-11-12",
+          "nights": 1,
+          "totalAmount": 3800,
+          "paymentStatus": "paid",
+          "notes": "Synced from airbnb iCal feed.",
+          "isOfflineBlock": false,
+          "createdAt": "2026-11-11T17:01:45.163Z"
+        },
+        {
+          "id": "bk_1794416505163_jjifh9",
+          "userId": "user_demo_host",
+          "roomId": "room_user_demo_host_1",
+          "guestName": "AIRBNB Guest (7f662ec65913)",
+          "source": "airbnb",
+          "externalBookingId": "7f662ec65913-f09b63beda3ca17a3ef6df924d251ace@airbnb.com",
+          "checkIn": "2026-11-23",
+          "checkOut": "2026-11-25",
+          "nights": 2,
+          "totalAmount": 7600,
+          "paymentStatus": "paid",
+          "notes": "Synced from airbnb iCal feed.",
+          "isOfflineBlock": false,
+          "createdAt": "2026-11-11T17:01:45.164Z"
+        }
+      ],
+      "feeds": [],
+      "logs": [
+        {
+          "id": "log_1794416505164_scm0xc",
+          "userId": "user_demo_host",
+          "feedId": "feed_1794416495983_iahkor",
+          "channel": "airbnb",
+          "roomName": "Pine Crest Wooden Cottage",
+          "timestamp": "2026-11-11T17:01:45.164Z",
+          "status": "success",
+          "eventsFound": 2,
+          "bookingsAdded": 2,
+          "bookingsUpdated": 0,
+          "message": "Parsed 2 events from AIRBNB feed. Added 2, updated 0."
+        }
+      ],
+      "lastUpdated": "2026-11-11T17:16:32.455Z"
+    }
+  }
+}

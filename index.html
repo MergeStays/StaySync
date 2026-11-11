@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      // Immediately suppress HMR WebSocket errors per AI Studio environment constraints (HMR disabled in container)
+      (function() {
+        var origConsoleError = console.error;
+        console.error = function() {
+          var args = Array.prototype.slice.call(arguments);
+          var msg = args.map(function(a) {
+            return (a && (a.message || a.stack)) || String(a);
+          }).join(' ');
+          if (
+            msg.indexOf('WebSocket') !== -1 ||
+            msg.indexOf('closed without opened') !== -1 ||
+            msg.indexOf('[vite]') !== -1
+          ) {
+            return;
+          }
+          return origConsoleError.apply(console, args);
+        };
+
+        var NativeWebSocket = window.WebSocket;
+        if (NativeWebSocket) {
+          window.WebSocket = function(url, protocols) {
+            var isHmr = (typeof protocols === 'string' && protocols === 'vite-hmr') ||
+                        (Array.isArray(protocols) && protocols.indexOf('vite-hmr') !== -1) ||
+                        (typeof url === 'string' && (url.indexOf('vite-hmr') !== -1 || url.indexOf('/@vite') !== -1));
+            if (isHmr) {
+              var mockSocket = {
+                readyState: 1, // WebSocket.OPEN
+                url: url,
+                protocol: 'vite-hmr',
+                bufferedAmount: 0,
+                extensions: '',
+                binaryType: 'blob',
+                onopen: null,
+                onclose: null,
+                onmessage: null,
+                onerror: null,
+                send: function() {},
+                close: function() {},
+                addEventListener: function(type, cb) {
+                  if (type === 'open') {
+                    setTimeout(function() {
+                      try { cb.call(mockSocket, { type: 'open', target: mockSocket }); } catch(err) {}
+                    }, 0);
+                  }
+                },
+                removeEventListener: function() {},
+                dispatchEvent: function() { return true; }
+              };
+              setTimeout(function() {
+                if (typeof mockSocket.onopen === 'function') {
+                  try { mockSocket.onopen.call(mockSocket, { type: 'open', target: mockSocket }); } catch(err) {}
+                }
+              }, 0);
+              return mockSocket;
+            }
+            return new NativeWebSocket(url, protocols);
+          };
+          window.WebSocket.prototype = NativeWebSocket.prototype;
+          window.WebSocket.CONNECTING = NativeWebSocket.CONNECTING;
+          window.WebSocket.OPEN = NativeWebSocket.OPEN;
+          window.WebSocket.CLOSING = NativeWebSocket.CLOSING;
+          window.WebSocket.CLOSED = NativeWebSocket.CLOSED;
+        }
+
+        window.addEventListener('error', function(e) {
+          var msg = (e && (e.message || (e.error && (e.error.message || e.error.stack)))) || '';
+          if (
+            msg.indexOf('WebSocket') !== -1 ||
+            msg.indexOf('closed without opened') !== -1 ||
+            msg.indexOf('vite') !== -1
+          ) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+            return true;
+          }
+        }, true);
+
+        window.addEventListener('unhandledrejection', function(e) {
+          var msg = (e && e.reason && (e.reason.message || e.reason.stack || String(e.reason))) || '';
+          if (
+            msg.indexOf('WebSocket') !== -1 ||
+            msg.indexOf('closed without opened') !== -1 ||
+            msg.indexOf('vite') !== -1
+          ) {
+            e.preventDefault();
+            return true;
+          }
+        });
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>StaySync - Homestay Channel & Booking Manager</title>
+    <meta name="description" content="All-in-one mobile homestay channel manager. Track Airbnb, MakeMyTrip, Booking.com, and direct offline bookings with room inventory control, iCalendar 2-way sync, and secure host authentication." />
+    <meta property="og:title" content="StaySync - Homestay Channel & Booking Manager" />
+    <meta property="og:description" content="All-in-one mobile homestay channel manager. Track Airbnb, MakeMyTrip, Booking.com, and direct offline bookings with room inventory control, iCalendar 2-way sync, and secure host authentication." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#020617" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="StaySync" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/pwa-192x192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-slate-950 text-slate-100 antialiased selection:bg-amber-500/20 selection:text-amber-200 min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
